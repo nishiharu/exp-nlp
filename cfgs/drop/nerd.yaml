@@ -1,0 +1,10 @@
+PREPROCESS:
+  LOWER_CASE: True
+  BERT_NAME: 'bert-base-uncased'
+  MAX_PIECES: 512
+  INPUT_FILE: 
+    - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_dev.json'
+    - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_train.json'
+  OUTPUT_FILE:
+    - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_dev.proc.json'
+    - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_train.proc.json'
