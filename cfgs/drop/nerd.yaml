@@ -1,6 +1,13 @@
+---
+MODEL_PREFIX: 'nerd-baseline'
+TASK: 'drop'
+OUTPUT_PATH: '/groups1/gcb50257/cpma/results/exp-nlp/drop'
+GPUS: '0,1,2,3'
+BERT_NAME: 'bert-base-uncased'
+RNG_SEED: 12345
+
 PREPROCESS:
   LOWER_CASE: True
-  BERT_NAME: 'bert-base-uncased'
   MAX_PIECES: 512
   INPUT_FILE: 
     - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_dev.json'
@@ -8,3 +15,22 @@ PREPROCESS:
   OUTPUT_FILE:
     - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_dev.proc.json'
     - '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_train.proc.json'
+
+DATASET:
+  TRAIN_PATH: '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_train.proc.json'
+  VAL_PATH: '/groups1/gcb50257/cpma/data/drop_dataset/drop_dataset_dev.proc.json'
+
+NETWORK:
+  BACKBONE: ExpNet
+
+TRAIN:
+  SHUFFLE: true
+  BATCH_SIZE: 4
+  GRAD_ACCUMULATE_STEPS: 4
+  LR: 7.0e-5
+  WD: 0.0001
+  OPTIMIZER: 'SGD'
+  MOMENTUM: 0.9
+
+VAL:
+  SHUFFLE: false

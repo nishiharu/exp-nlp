@@ -8,18 +8,10 @@ import re
 
 from allennlp.data.tokenizers import Token, WordTokenizer
 
-from common.utils.config import load_config
+from common.utils.config import parse_args
 from common.utils.number import get_number_from_word
 
 _SPECIAL_TOKENS_RE = re.compile(r"^\[[^ ]*\]$", re.UNICODE)
-
-def parse_args():
-    parser = argparse.ArgumentParser('Preprocess DROP dataset')
-    parser.add_argument('--config-file', type=str, help='Path to config.yaml')
-    args = parser.parse_args()
-
-    config = load_config(args.config_file)
-    return config
 
 def tokenize(tokenizer, text):
     tokens = []
@@ -133,7 +125,7 @@ def main():
     config = parse_args()
 
     tokenizer = transformers.BertTokenizer.from_pretrained(
-        config.PREPROCESS.BERT_NAME,
+        config.BERT_NAME,
         do_lower_case=config.PREPROCESS.LOWER_CASE
     )
     word_tokenizer = WordTokenizer()
